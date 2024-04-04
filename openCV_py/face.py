@@ -41,10 +41,13 @@ def facedetect():
             
         cv2.imshow("Face_detect",frame)
         
-        cv2.waitKey(10)
+        cv2.waitKey(2000)
+        ret = False
 
-        #if cv2.waitKey(1) == ord("q"):
-            #break
+        # if cv2.waitKey(1) == ord("q"):
+            # break
+
+
     cv2.destroyAllWindows()
     return id
 
