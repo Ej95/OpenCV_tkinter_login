@@ -16,6 +16,6 @@
 
 ### 聯絡方式：
 
-#### Discord : <discordapp.com/users/594866496174555155>
+#### Discord : [我的Discord](discordapp.com/users/594866496174555155)
 
 ### 希望大家用的愉快~
