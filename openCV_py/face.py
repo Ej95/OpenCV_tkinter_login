@@ -1,11 +1,10 @@
 import cv2
 import numpy as np
+import sys
+sys.path.append(r"sql")
+import face_data
 
 
-name = {
-    "1" : "EJ",
-    "2" : "I love Bei"
-}
 
 def facedetect():
     id = 0
@@ -28,26 +27,25 @@ def facedetect():
 
             #判定身分
             idnum,confidence = recognizer.predict(gray[y:y+h,x:x+w]) #得到 ID & confidence
-            if confidence < 70:
-                text = name[str(idnum)]
+            if confidence < 65:
+                text = face_data.get_name_by_face_id(idnum)[0][0]
                 id = idnum
                 cv2.putText(frame, text, (x,y-5),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA) # x, y 原點在左上角
                 break
             else:
                 text = "WTF?"
-                id = 0
                 cv2.putText(frame, text, (x,y-5),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA) # x, y 原點在左上角
-                break     
+                id = -1
+                break
             
         cv2.imshow("Face_detect",frame)
         
-        cv2.waitKey(2000)
         ret = False
 
         # if cv2.waitKey(1) == ord("q"):
             # break
 
-
+    cv2.waitKey(1000)
     cv2.destroyAllWindows()
     return id
 

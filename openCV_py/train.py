@@ -7,7 +7,7 @@ faces = []   # 儲存人臉位置大小的串列
 ids = []     # 記錄該人臉 id 的串列
 
 #EJ
-for i in range(1,31):
+for i in range(1,56):
     img = cv2.imread(f'openCV_py\\my_head\\face01\\{i}.JPG')           # 依序開啟每一張的照片
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # 色彩轉換成黑白
     img_np = np.array(gray,'uint8')               # 轉換成指定編碼的 numpy 陣列

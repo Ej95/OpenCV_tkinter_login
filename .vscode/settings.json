@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./openCV_py"
+        "./openCV_py",
+        "./sql"
     ]
 }
