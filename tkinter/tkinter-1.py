@@ -7,7 +7,6 @@ import face_data
 import time
  
 id = 0
-do = False
 
 
 win = tk.Tk() #建立主視窗
@@ -17,9 +16,6 @@ win.title("tkinter test")
 
 #大小
 win.geometry() #寬 X 高
-
-#win.minsize(width= 800,height= 200) 
-#win.maxsize(width= 400,height= 200)
 
 win.resizable(0,0) # 1 = True, 0 = False
 
@@ -59,10 +55,7 @@ def detect():
     text_name = en_name.get()
     text_student_id = str(en_student_id.get())
 
-    print(face_data.get_name_by_face_id(id))
-    print(face_data.get_student_id_by_face_id(id))
     
-
     if len(face_data.get_name_by_face_id(id)) == 0 and len(face_data.get_student_id_by_face_id(id)) == 0 and id != -1:
         label_result.config(text="未偵測到臉，請在試一次", font=("微軟正黑體", 20))
         label_result.grid(row=3,column=0,columnspan=2)
@@ -82,20 +75,6 @@ btn_face = tk.Button(text="人臉辨識(請先認證學號、姓名)", font=("�
 btn_face.grid(row=2,column=0)
 
 
-#btn2 = tk.Button(text="Submit",command= submit)
-#btn2.pack()
-
-'''
-#labbel
-lb_1 = tk.Label(text="點我打開人臉辨識", font=("微軟正黑體", 20))
-lb_1.place(x=290,y=520)
-
-lb_2 = tk.Label(text="確認自己臉擺好偵測到之後，按 q 即可關閉人臉辨識視窗",font=("微軟正黑體", 20))
-lb_2.place(x=100,y=600)
-
-login_label = tk.Label(text="請登入",font=("微軟正黑體",16))
-login_label.place(x=350, y = 650)
-'''
 
 
 label_login_name = tk.Label(text="姓名",font=("微軟正黑體",20))

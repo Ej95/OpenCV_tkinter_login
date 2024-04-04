@@ -40,7 +40,6 @@ def get_student_id_by_student_name(name):
 
     cursor.execute(enter)
     records = cursor.fetchall()
-    print(records)
 
     return records
 
