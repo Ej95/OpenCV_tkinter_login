@@ -31,19 +31,15 @@ def facedetect():
                 text = face_data.get_name_by_face_id(idnum)[0][0]
                 id = idnum
                 cv2.putText(frame, text, (x,y-5),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA) # x, y 原點在左上角
-                break
             else:
                 text = "WTF?"
                 cv2.putText(frame, text, (x,y-5),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA) # x, y 原點在左上角
-                id = -1
-                break
+                id = -1 #未驗證的臉，回傳-1
             
         cv2.imshow("Face_detect",frame)
         
-        ret = False
-
-        # if cv2.waitKey(1) == ord("q"):
-            # break
+        if cv2.waitKey(1) == ord("q"):
+            break
 
     cv2.waitKey(1000)
     cv2.destroyAllWindows()
