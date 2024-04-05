@@ -74,13 +74,18 @@ def show_error3():
     ctkmsg(title="無法執行", message="人臉辨識尚未成功", icon=r"tkinter\picture\cancel.png",font=(font,16))
 
 #注意事項，人臉辨識使用手冊
-def show_info():
+def show_info1():
     # Default messagebox for showing some information
     msg = ctkmsg(title="使用教學", message="請將臉對準在鏡頭上，偵測正確後再按 Q 關閉視窗",font=(font,16), option_1="我知道了")
 
     if msg.get() == "我知道了": #判斷是否有讀過訊息
         global info_success
         info_success = True
+
+#註冊成功
+def show_info2():
+    ctkmsg(message="註冊成功！ 可以關閉註冊畫面了",icon= r"tkinter\picture\check.png",title="註冊成功",font=(font,16))
+
 
 def show_face_result(result):
 
@@ -120,12 +125,45 @@ def face_detect_button_function():
     if login_success == False: #還未驗證學號、姓名，跳出錯誤窗口
         show_error1()
     elif info_success == False:
-        show_info()
+        show_info1()
     else:
         detect_id = face.facedetect() #回傳 -1 無此人臉資料，回傳 0 沒有偵測到臉
         result = success(detect_id=detect_id)
         show_face_result(result)
 
+
+#註冊功能
+def sign_up_button_func():
+
+    global app
+    create_toplevel(app)
+
+
+#註冊畫面
+def create_toplevel(self):
+
+    window = customtkinter.CTkToplevel(self)
+    window.geometry("400x200")
+    window.resizable(0,0)
+
+    global entry_sign_stud_name
+    global entry_sign_stud_number
+
+    entry_sign_stud_name=customtkinter.CTkEntry(window, width=220, placeholder_text='student_name')
+    entry_sign_stud_name.place(x=80, y=40)
+
+    entry_sign_stud_number=customtkinter.CTkEntry(window, width=220, placeholder_text='student_number', show="*")
+    entry_sign_stud_number.place(x=80, y=80)
+
+    btn_confirm = customtkinter.CTkButton(window, text="註冊", font=(font,14) , width=220, height=30, compound="left", fg_color='white', text_color='black', hover_color='#AFAFAF',command=sign_up)
+    btn_confirm.place(x=80,y=120)
+
+
+
+#將資料讀取，存入資料庫
+def sign_up():
+    face_data.insert_data(entry_sign_stud_name.get(),entry_sign_stud_number.get())
+    show_info2()
 
 
 
@@ -158,7 +196,7 @@ button_login.place(x=50, y=230)
 button_face_detect= customtkinter.CTkButton(master=frame, text="人臉辨識", font=(font,14) , width=100, height=30, compound="left", fg_color='white', text_color='black', hover_color='#AFAFAF',command=face_detect_button_function)
 button_face_detect.place(x=50, y=280)
 
-button_sign_up= customtkinter.CTkButton(master=frame, text="註冊", font=(font,14) , width=100, height=30, compound="left", fg_color='white', text_color='black', hover_color='#AFAFAF')
+button_sign_up= customtkinter.CTkButton(master=frame, text="註冊", font=(font,14) , width=100, height=30, compound="left", fg_color='white', text_color='black', hover_color='#AFAFAF',command=sign_up_button_func)
 button_sign_up.place(x=170, y=280)
 
 
